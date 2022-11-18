@@ -1,10 +1,13 @@
 #Content/VehicleCPP/Maps/*
+Assets/TextMesh Pro/*
+Assets/Audio/*
 Library
 Logs
 Packages
 ProjectSettings
 Temp
 UserSettings
+obj/*
 .vsconfig
 .vs
 *.VC.db
@@ -15,3 +18,5 @@ UserSettings
 *.suo
 *.xcodeproj
 *.xcworkspace
+*.mp3
+*.wav
