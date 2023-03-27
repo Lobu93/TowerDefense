@@ -7,6 +7,10 @@ public class ShootEnemies : MonoBehaviour
     public List<GameObject> enemiesInRange;
     private float lastShotTime;
     private UnitData unitData;
+    private GameObject currentSpawnPoint;
+
+    public GameObject pointUp, pointUpDiagonalRight, pointRight, pointDownDiagonalRight;
+    public GameObject pointDown, pointDownDiagonalLeft, pointLeft, pointUpDiagonalLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -74,8 +78,8 @@ public class ShootEnemies : MonoBehaviour
     void Shoot(Collider2D target)
     {
         GameObject bulletPrefab = unitData.CurrentLevel.bullet;
-        
-        Vector3 startPosition = gameObject.transform.position;
+
+        Vector3 startPosition = currentSpawnPoint.transform.position;
         Vector3 targetPosition = target.transform.position;
         startPosition.z = bulletPrefab.transform.position.z;
         targetPosition.z = bulletPrefab.transform.position.z;
@@ -86,6 +90,12 @@ public class ShootEnemies : MonoBehaviour
         bulletComp.target = target.gameObject;
         bulletComp.startPosition = startPosition;
         bulletComp.targetPosition = targetPosition;
+
+        // Calculate Rotation
+        //Vector3 direction = gameObject.transform.position - target.transform.position;
+        //gameObject.transform.rotation = Quaternion.AngleAxis(
+        //    Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI,
+        //    new Vector3(0, 0, 1));
 
         Animator animator = unitData.CurrentLevel.visualization.GetComponent<Animator>();
         animator.SetTrigger("fireShot");
@@ -119,6 +129,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isUp", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointUp;
         }
         else
         {
@@ -131,6 +142,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isUpDiagonalRight", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointUpDiagonalRight;
         }
         else
         {
@@ -143,6 +155,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isRight", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointRight;
         }
         else
         {
@@ -155,6 +168,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isDownDiagonalRight", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointDownDiagonalRight;
         }
         else
         {
@@ -168,7 +182,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isDown", true);
             animator.SetBool("isIdle", false);
-            // print("rotationAngle: Down");
+            currentSpawnPoint = pointDown;
         }
         else
         {
@@ -181,6 +195,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isDownDiagonalLeft", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointDownDiagonalLeft;
         }
         else
         {
@@ -193,6 +208,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isLeft", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointLeft;
         }
         else
         {
@@ -205,6 +221,7 @@ public class ShootEnemies : MonoBehaviour
         {
             animator.SetBool("isUpDiagonalLeft", true);
             animator.SetBool("isIdle", false);
+            currentSpawnPoint = pointUpDiagonalLeft;
         }
         else
         {

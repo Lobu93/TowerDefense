@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceUnit : MonoBehaviour
 {
     public GameObject unitPrefab;
-    public GameObject selectedDecal;    
+    public GameObject selectedDecal;
 
     private PlaceUnit[] placeUnits;
     private GameObject unit;
     private GameManagerBehavior gameManager;
 
-    private GameObject upgradeButton;
+    private GameObject upgradePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class PlaceUnit : MonoBehaviour
 
         placeUnits = FindObjectsOfType<PlaceUnit>();
 
-        upgradeButton = gameManager.upgradePanel;
+        upgradePanel = gameManager.upgradePanel;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class PlaceUnit : MonoBehaviour
         
     }
 
-    private bool CanPlaceMonster()
+    private bool CanPlaceUnit()
     {
         int cost = unitPrefab.GetComponent<UnitData>().levels[0].cost;
         return unit == null && gameManager.Gold >= cost;
@@ -41,28 +42,10 @@ public class PlaceUnit : MonoBehaviour
 
         if (unitPrefab != null)
         {
-            if (CanPlaceMonster())
+            if (CanPlaceUnit())
             {
                 unit = (GameObject)Instantiate(unitPrefab, transform.position, Quaternion.identity);
-
-                //UpgradeButton upgradeButtonDelegate = upgradeButton.GetComponent<UpgradeButton>();
-
-                //if (upgradeButtonDelegate)
-                //{
-                //    upgradeButtonDelegate.upgradeDelegate += UpgradeUnit;
-
-                //    if (upgradeButtonDelegate.upgradeDelegate != null)
-                //    {
-                //        print("UpgradeButtonDelegate in ON! " + gameObject);
-                //    }
-
-                //    // print("UpgradeButton.Unit set successful!");
-                //}
-                //else
-                //{
-                //    Debug.LogError("UpgradeButton.Unit failed...");
-                //}
-
+           
                 UnitLevel currentUnit = unit.GetComponent<UnitData>().CurrentLevel;
                 selectedDecal = currentUnit.selectedDecal;
                 selectedDecal.SetActive(false);
@@ -71,39 +54,35 @@ public class PlaceUnit : MonoBehaviour
                 audioSource.PlayOneShot(audioSource.clip);
 
                 gameManager.Gold -= unit.GetComponent<UnitData>().CurrentLevel.cost;
+                gameManager.currentOpenspot = gameObject;
             }
             else if (CanUpgradeUnit())
             {
                 DeselectAllUnits();
                 selectedDecal.SetActive(true);
+                
+                // ClearAllButtonDelegates();
+                UpdateUpgradeButtonImage();
+                gameManager.currentOpenspot = gameObject;
 
-                ClearAllButtonDelegates();
-
-                //UpgradeButton upgradeButtonDelegate = upgradeButton.GetComponent<UpgradeButton>();
-
-                //if (upgradeButtonDelegate)
-                //{
-                //    ClearAllButtonDelegates();
-
-                //    upgradeButtonDelegate.upgradeDelegate += UpgradeUnit;
-
-                //    if (upgradeButtonDelegate.upgradeDelegate != null)
-                //    {
-                //        print("UpgradeButtonDelegate in ON! " + gameObject);
-                //    }
-                //}
-                //else
-                //{
-                //    Debug.LogError("UpgradeButton.Unit failed...");
-                //}
-
-                gameManager.upgradeCostLabel.text = unit.GetComponent<UnitData>().CurrentLevel.cost.ToString();
+                gameManager.UpgradeCost = unit.GetComponent<UnitData>().CurrentLevel.cost;
+                gameManager.unitNameLabel.text = unit.GetComponent<UnitData>().CurrentLevel.unitName.ToString();
                 gameManager.upgradePanel.SetActive(true);
+
+                // Debug.Log("Class: PlaceUnit | else if (CanUpgradeUnit())");
             }
             else
             {
-                DeselectAllUnits();
-                selectedDecal.SetActive(true);
+                if (unit != null)
+                {
+                    DeselectAllUnits();
+                    selectedDecal.SetActive(true);
+                    UpdateUpgradeButtonImage();
+                    // gameManager.currentOpenspot = gameObject;
+                    gameManager.upgradeCostLabel.text = "Upgrade: MAX";
+                    gameManager.unitNameLabel.text = unit.GetComponent<UnitData>().CurrentLevel.unitName.ToString();
+                    gameManager.upgradePanel.SetActive(true);
+                }
             }
         }
     }
@@ -133,63 +112,39 @@ public class PlaceUnit : MonoBehaviour
 
     public void DeselectAllUnits()
     {
-        UnitData[] allUnits = FindObjectsOfType<UnitData>();
-        // PlaceUnit[] allPlaceUnits = FindObjectsOfType<PlaceUnit>();
+        UnitData[] allUnits = FindObjectsOfType<UnitData>();        
 
         foreach (UnitData unitData in allUnits)
         {
             unitData.CurrentLevel.selectedDecal.SetActive(false);
-        }
-
-        /* foreach (PlaceUnit placeUnit in allPlaceUnits)
-        {
-            UpgradeButton upgradeButtonDelegate = placeUnit.upgradeButton.GetComponent<UpgradeButton>();
-            
-            upgradeButtonDelegate.upgradeDelegate -= UpgradeUnit;
-
-            if (upgradeButtonDelegate)
-            {
-                Debug.LogWarning("DeselectedUnit: " + placeUnit.name);
-            }
-        } */
-    }
-
-    private void ClearAllButtonDelegates()
-    {
-        PlaceUnit[] allPlaceUnits = FindObjectsOfType<PlaceUnit>();
-        UpgradeButton upgradeButtonDelegate;
-
-        foreach (PlaceUnit placeUnit in allPlaceUnits)
-        {
-            if (gameObject != placeUnit.gameObject)
-            {
-                upgradeButtonDelegate = placeUnit.upgradeButton.GetComponent<UpgradeButton>();
-
-                upgradeButtonDelegate.upgradeDelegate -= UpgradeUnit;
-            }
-            else
-            {
-                //UpgradeButton upgradeButtonDelegate = upgradeButton.GetComponent<UpgradeButton>();
-                //upgradeButtonDelegate.upgradeDelegate += UpgradeUnit;
-                
-                Debug.LogWarning("Only Unit selected: " + placeUnit.name);
-            }
-        }
-
-        upgradeButtonDelegate = upgradeButton.GetComponent<UpgradeButton>();
-        upgradeButtonDelegate.upgradeDelegate += UpgradeUnit;
+        }                
     }
 
     public void UpgradeUnit()
     {
         if (CanUpgradeUnit())
         {
-            print("Upgrade Button pressed! " + gameObject);
+            // print("Upgrade Button pressed! " + gameObject);
 
             unit.GetComponent<UnitData>().IncreaseLevel();
+            UpdateUpgradeButtonImage();
+
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
             gameManager.Gold -= unit.GetComponent<UnitData>().CurrentLevel.cost;
-        }        
+            gameManager.UpgradeCost = unit.GetComponent<UnitData>().CurrentLevel.cost;
+            gameManager.unitNameLabel.text = unit.GetComponent<UnitData>().CurrentLevel.unitName.ToString();
+
+            print("currentLevelIndex = " + unit.GetComponent<UnitData>().CurrentLevelIndex);
+            Debug.Log("Class: PlaceUnit | Function: UpgradeUnit() | ObjectName: " + gameObject);
+        }
+    }
+
+    private void UpdateUpgradeButtonImage()
+    {
+        Image upgradeImage = upgradePanel.GetComponentInChildren<Image>();
+        UnitLevel currentLevel = unit.GetComponent<UnitData>().CurrentLevel;
+        int currentLevelIndex = unit.GetComponent<UnitData>().levels.IndexOf(currentLevel);
+        upgradeImage.sprite = upgradePanel.GetComponent<UpgradeButton>().buttonLevelImages[currentLevelIndex];
     }
 }

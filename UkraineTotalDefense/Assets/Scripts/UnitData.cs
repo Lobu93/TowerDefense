@@ -10,6 +10,7 @@ public class UnitLevel
     public GameObject bullet;
     public float fireRate;
     public GameObject selectedDecal;
+    public string unitName;
 }
 
 public class UnitData : MonoBehaviour
@@ -24,7 +25,7 @@ public class UnitData : MonoBehaviour
         {
             return currentLevel;
         }
-        
+
         set
         {
             currentLevel = value;
@@ -45,6 +46,21 @@ public class UnitData : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private int currentLevelIndex;
+    public int CurrentLevelIndex
+    {
+        get
+        {
+            currentLevelIndex = levels.IndexOf(currentLevel);
+            return currentLevelIndex;
+        }
+        set
+        {
+            currentLevelIndex = value;
+            // upgradeCostLabel.GetComponent<TextMeshProUGUI>().text = "Upgrade: $" + upgradeCost;
         }
     }
 

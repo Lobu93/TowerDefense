@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManagerBehavior : MonoBehaviour
 {
-    public Text goldLabel;
-    public Text waveLabel;
+    public TextMeshProUGUI goldLabel;
+    public TextMeshProUGUI waveLabel;
     public GameObject[] nextWaveLabels;
     public bool gameOver = false;
-    public Text healthLabel;
-    public Text upgradeCostLabel;
+    public TextMeshProUGUI healthLabel;
+    public TextMeshProUGUI upgradeCostLabel;
+    public TextMeshProUGUI unitNameLabel;
     public GameObject upgradePanel;
+    public GameObject currentOpenspot;
 
     private int gold;
     public int Gold
@@ -23,7 +26,7 @@ public class GameManagerBehavior : MonoBehaviour
         set
         {
             gold = value;
-            goldLabel.GetComponent<Text>().text = "MONEY: " + gold;
+            goldLabel.text = "MONEY: " + gold;
         }
     }
 
@@ -44,7 +47,7 @@ public class GameManagerBehavior : MonoBehaviour
                     nextWaveLabels[i].GetComponent<Animator>().SetTrigger("nextWave");
                 }
             }
-            waveLabel.text = "WAVE: " + (wave + 1) + "/10";
+            waveLabel.text = "WAVE: " + (wave + 1) + "/" + GameObject.Find("Road").GetComponent<SpawnEnemy>().waves.Length;
         }
     }
 
@@ -71,6 +74,34 @@ public class GameManagerBehavior : MonoBehaviour
                 GameObject gameOverText = GameObject.FindGameObjectWithTag("GameOver");
                 gameOverText.GetComponent<Animator>().SetBool("gameOver", true);
             }
+        }
+    }
+
+    private int upgradeCost;
+    public int UpgradeCost
+    {
+        get
+        {
+            return upgradeCost;
+        }
+        set
+        {
+            upgradeCost = value;
+            upgradeCostLabel.GetComponent<TextMeshProUGUI>().text = "Upgrade: $" + upgradeCost;
+        }
+    }
+
+    private int unitName;
+    public int UnitName
+    {
+        get
+        {
+            return unitName;
+        }
+        set
+        {
+            unitName = value;
+            unitNameLabel.text = unitName.ToString();
         }
     }
 

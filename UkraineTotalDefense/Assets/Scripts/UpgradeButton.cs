@@ -4,31 +4,17 @@ using UnityEngine;
 
 public class UpgradeButton : MonoBehaviour
 {
-    public delegate void UpgradeDelegate();
-    public UpgradeDelegate upgradeDelegate;
+    public Sprite[] buttonLevelImages;
+    private GameManagerBehavior gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
     }
 
     public void OnUpgradeUnit()
     {
-        if (upgradeDelegate != null)
-        {
-            upgradeDelegate();
-            print("Upgrade Button pressed! " + gameObject);
-        }
-        else
-        {
-            Debug.LogError("All delegates clear...");
-        }
+        gameManager.currentOpenspot.GetComponent<PlaceUnit>().UpgradeUnit();
     }
 }
