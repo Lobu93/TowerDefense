@@ -7,7 +7,8 @@ public class ShootEnemies : MonoBehaviour
     public List<GameObject> enemiesInRange;
     private float lastShotTime;
     private UnitData unitData;
-    private GameObject currentSpawnPoint;
+    public GameObject currentSpawnPoint;
+    public GameObject muzzleFlash_FX;
 
     public GameObject pointUp, pointUpDiagonalRight, pointRight, pointDownDiagonalRight;
     public GameObject pointDown, pointDownDiagonalLeft, pointLeft, pointUpDiagonalLeft;
@@ -91,11 +92,7 @@ public class ShootEnemies : MonoBehaviour
         bulletComp.startPosition = startPosition;
         bulletComp.targetPosition = targetPosition;
 
-        // Calculate Rotation
-        //Vector3 direction = gameObject.transform.position - target.transform.position;
-        //gameObject.transform.rotation = Quaternion.AngleAxis(
-        //    Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI,
-        //    new Vector3(0, 0, 1));
+        TriggerMuzzleFlash();
 
         Animator animator = unitData.CurrentLevel.visualization.GetComponent<Animator>();
         animator.SetTrigger("fireShot");
@@ -217,7 +214,7 @@ public class ShootEnemies : MonoBehaviour
         }
 
         // Up Diagonal Left
-        if (rotationAngle > 67.5f && rotationAngle < 22.5f)
+        if (rotationAngle > -67.5f && rotationAngle < -22.5f)
         {
             animator.SetBool("isUpDiagonalLeft", true);
             animator.SetBool("isIdle", false);
@@ -228,21 +225,13 @@ public class ShootEnemies : MonoBehaviour
             animator.SetBool("isIdle", true);
             animator.SetBool("isUpDiagonalLeft", false);
         }
+    }
 
-        // Down Right 
-        /* if (rotationAngle > -45.0f && rotationAngle < -15.0f)
-        {
-            animator.SetBool("isDownLeft", true);
-        }
+    private void TriggerMuzzleFlash()
+    {        
+        Transform spawnPoint = currentSpawnPoint.transform;
 
-        // Down Left 
-        if (rotationAngle > -165.0f && rotationAngle < -135.0f)
-        {
-            animator.SetBool("isDownLeft", false);
-        } */
-
-        // print("rotationAngle: " + rotationAngle);
-
-        // sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
+        GameObject explosion = Instantiate(muzzleFlash_FX, spawnPoint.position, muzzleFlash_FX.transform.rotation);
+        Destroy(explosion, 1f);
     }
 }

@@ -9,19 +9,22 @@ public class BulletBehavior : MonoBehaviour
     public GameObject target;
     public bool isGuided;
     public bool isCurvedTrajectory;
-    public Vector3 curvedMidPointElevation;
-    public LineRenderer lineRenderer;
-    
+
+    [SerializeField] GameObject explosion_FX;
+
+    // public LineRenderer lineRenderer; // For debug purposes only
+
     public Vector3 startPosition;
     public Vector3 targetPosition;    
 
     private float distance;
     private float startTime;
+    private Vector3 curvedMidPointElevation;
 
     private GameManagerBehavior gameManager;
 
-    private int numPoints = 50;
-    private Vector3[] positions = new Vector3[50];
+    // private int numPoints = 50; // For debug purposes only
+    // private Vector3[] positions = new Vector3[50];
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +39,13 @@ public class BulletBehavior : MonoBehaviour
             CalculateRotation();
         }
 
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = numPoints;
+        //lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer.positionCount = numPoints;
+
         curvedMidPointElevation = Vector3.Lerp(startPosition, targetPosition, 0.5f);
         curvedMidPointElevation += new Vector3(0.0f, 0.0f, distance);
 
-        DrawQuadraticCurve();
-        
-        Debug.Log("curvedMidPointElevation: " + curvedMidPointElevation);
+        // DrawQuadraticCurve(); // For debug purposes only
     }
 
     // Update is called once per frame
@@ -76,11 +78,16 @@ public class BulletBehavior : MonoBehaviour
                 HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
                 healthBar.currentHealth -= Mathf.Max(damage, 0);
 
+                TriggerExplosionFX();
+
                 if (healthBar.currentHealth <= 0)
                 {
                     Destroy(target);
                     AudioSource audioSource = target.GetComponent<AudioSource>();
                     AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+
+                    // Play a explosion FX for enemy death
+                    target.GetComponent<EnemyDestructionDelegate>().TriggerEnemyExplosionFX();
 
                     gameManager.Gold += 50;
                 }
@@ -97,7 +104,8 @@ public class BulletBehavior : MonoBehaviour
             new Vector3(0, 0, 1));
     }
 
-    private void DrawQuadraticCurve()
+    // For debug purposes only
+    /* private void DrawQuadraticCurve()
     {
         for (int i = 1; i < numPoints + 1; i++)
         {
@@ -106,7 +114,7 @@ public class BulletBehavior : MonoBehaviour
         }
 
         lineRenderer.SetPositions(positions);
-    }
+    } */
 
     private Vector3 CalculateQuadraticBezierPoint(float timeParam, Vector3 point_0, Vector3 point_1, Vector3 point_2)
     {
@@ -124,4 +132,11 @@ public class BulletBehavior : MonoBehaviour
 
         return pointLocal;
     }
+
+    private void TriggerExplosionFX()
+    {
+        GameObject explosion = Instantiate(explosion_FX, transform.position, transform.rotation);
+        Destroy(explosion, 1f);
+    }
 }
+

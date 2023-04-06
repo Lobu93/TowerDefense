@@ -100,6 +100,8 @@ MonoBehaviour:
   speed: 10
   damage: 10
   target: {fileID: 0}
+  isGuided: 1
+  isCurvedTrajectory: 0
+  explosion_FX: {fileID: 100014, guid: ba8b729e8a3d94c4eb7865e05d3451d3, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  isGuided: 1

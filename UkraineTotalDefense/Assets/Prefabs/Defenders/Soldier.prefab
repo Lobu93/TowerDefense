@@ -753,6 +753,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
+  currentSpawnPoint: {fileID: 0}
+  muzzleFlash_FX: {fileID: 1000013462590818, guid: 1bfb2f5a71dc73048bb2a8b3539d7734, type: 3}
   pointUp: {fileID: 8279987147250361407}
   pointUpDiagonalRight: {fileID: 5055340623084337193}
   pointRight: {fileID: 3615641981428766533}
