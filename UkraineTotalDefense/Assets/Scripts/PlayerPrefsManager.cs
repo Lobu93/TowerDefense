@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerPrefsManager : MonoBehaviour
 {
     const string MASTER_VOLUME_KEY = "master_volume";
-    const string DIFFICULTY_KEY = "difficulty";
+    const string SOUNDFX_KEY = "sound_fx_volume";
     const string LEVEL_KEY = "level_unlocked_";
     const string FIRST_INIT_KEY = "first_init";
 
@@ -55,21 +55,21 @@ public class PlayerPrefsManager : MonoBehaviour
         }
     }
 
-    public static void SetDifficulty(float difficulty)
+    public static void SetSoundFXVolume(float volume)
     {
-        if (difficulty >= 1f && difficulty <= 3f)
+        if (volume >= 0f && volume <= 1f)
         {
-            PlayerPrefs.SetFloat(DIFFICULTY_KEY, difficulty);
+            PlayerPrefs.SetFloat(SOUNDFX_KEY, volume);
         }
         else
         {
-            Debug.LogError("Difficulty out of range");
+            Debug.LogError("SoundFX volume out of range");
         }
     }
 
-    public static float GetDifficulty()
+    public static float GetSoundFXVolume()
     {
-        return PlayerPrefs.GetFloat(DIFFICULTY_KEY);
+        return PlayerPrefs.GetFloat(SOUNDFX_KEY);
     }
 
     public static bool IsFirstGameInit()

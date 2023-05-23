@@ -126,7 +126,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b439f7ba3d582d741827746f511a9d89, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6a463cab494071b4b8a530141b79dd79, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -226,4 +226,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 4036693552590690723, guid: 8c0542f05f514c140b2c515d098b85fc, type: 3}
   selectedDecal: {fileID: 0}
-  upgradeButtonDelegate: {fileID: 439734395, guid: 297ee54e8d3731e4e924306d6c13a865, type: 3}

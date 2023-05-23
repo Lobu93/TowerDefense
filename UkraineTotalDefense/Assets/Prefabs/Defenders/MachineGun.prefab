@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1299281697
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1471566631
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +195,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1471566634
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -211,7 +212,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1733072396
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +302,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1733072399
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -317,7 +319,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2646017989858861831
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,9 +610,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6385106c6576b694f895a74169781cc2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d3a555965639f964186f656381e94cf0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -722,22 +725,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - cost: 200
+  - cost: 100
     visualization: {fileID: 1299281694}
     bullet: {fileID: 5122770295875038258, guid: f702ace05c0e04c47b0a84323574854e, type: 3}
-    fireRate: 1
+    fireRate: 0.5
     selectedDecal: {fileID: 213989250822164542}
     unitName: Machine Gun Lv. 1
-  - cost: 110
+  - cost: 80
     visualization: {fileID: 1733072396}
-    bullet: {fileID: 5122770295875038258, guid: f702ace05c0e04c47b0a84323574854e, type: 3}
-    fireRate: 1
+    bullet: {fileID: 5122770295875038258, guid: 4f12dfc110635c54f86bd426cb45e1f3, type: 3}
+    fireRate: 0.5
     selectedDecal: {fileID: 213989250822164542}
     unitName: Machine Gun Lv. 2
-  - cost: 120
+  - cost: 90
     visualization: {fileID: 1471566631}
-    bullet: {fileID: 5122770295875038258, guid: f702ace05c0e04c47b0a84323574854e, type: 3}
-    fireRate: 1
+    bullet: {fileID: 5122770295875038258, guid: 57b18098f1b280c4baba64e5a6a36f4d, type: 3}
+    fireRate: 0.5
     selectedDecal: {fileID: 213989250822164542}
     unitName: Machine Gun Lv. 3
 --- !u!114 &-1646885287966831551

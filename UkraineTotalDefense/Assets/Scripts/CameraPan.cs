@@ -50,7 +50,10 @@ public class CameraPan : MonoBehaviour
         //    return;
         //}
 
-        PanCamera();
+        if (!gameManager.isGamePaused)
+        {
+            PanCamera();
+        }
     }
 
     private void PanCamera()

@@ -13,12 +13,17 @@ public class ShootEnemies : MonoBehaviour
     public GameObject pointUp, pointUpDiagonalRight, pointRight, pointDownDiagonalRight;
     public GameObject pointDown, pointDownDiagonalLeft, pointLeft, pointUpDiagonalLeft;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         enemiesInRange = new List<GameObject>();
         lastShotTime = Time.time;
         unitData = gameObject.GetComponentInChildren<UnitData>();
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.volume *= PlayerPrefsManager.GetSoundFXVolume();
     }
 
     // Update is called once per frame
@@ -96,7 +101,7 @@ public class ShootEnemies : MonoBehaviour
 
         Animator animator = unitData.CurrentLevel.visualization.GetComponent<Animator>();
         animator.SetTrigger("fireShot");
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+
         audioSource.PlayOneShot(audioSource.clip);
     }
 

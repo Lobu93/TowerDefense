@@ -22,6 +22,7 @@ public class BulletBehavior : MonoBehaviour
     private Vector3 curvedMidPointElevation;
 
     private GameManagerBehavior gameManager;
+    private AudioSource audioSource;
 
     // private int numPoints = 50; // For debug purposes only
     // private Vector3[] positions = new Vector3[50];
@@ -33,6 +34,9 @@ public class BulletBehavior : MonoBehaviour
         distance = Vector2.Distance(startPosition, targetPosition);
         GameObject gm = GameObject.Find("GameManager");
         gameManager = gm.GetComponent<GameManagerBehavior>();
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.volume *= PlayerPrefsManager.GetSoundFXVolume();
 
         if (!isGuided)
         {
@@ -83,8 +87,9 @@ public class BulletBehavior : MonoBehaviour
                 if (healthBar.currentHealth <= 0)
                 {
                     Destroy(target);
-                    AudioSource audioSource = target.GetComponent<AudioSource>();
-                    AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+                    AudioSource targetAudioSource = target.GetComponent<AudioSource>();
+                    targetAudioSource.volume = PlayerPrefsManager.GetSoundFXVolume();
+                    AudioSource.PlayClipAtPoint(targetAudioSource.clip, transform.position, targetAudioSource.volume);
 
                     // Play a explosion FX for enemy death
                     target.GetComponent<EnemyDestructionDelegate>().TriggerEnemyExplosionFX();
@@ -98,10 +103,13 @@ public class BulletBehavior : MonoBehaviour
 
     private void CalculateRotation()
     {
-        Vector3 direction = startPosition - target.transform.position;
-        gameObject.transform.rotation = Quaternion.AngleAxis(
-            Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI,
-            new Vector3(0, 0, 1));
+        if (target != null)
+        {
+            Vector3 direction = startPosition - target.transform.position;
+            gameObject.transform.rotation = Quaternion.AngleAxis(
+                Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI,
+                new Vector3(0, 0, 1));
+        }
     }
 
     // For debug purposes only
@@ -135,8 +143,10 @@ public class BulletBehavior : MonoBehaviour
 
     private void TriggerExplosionFX()
     {
+        AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, audioSource.volume);
+     
         GameObject explosion = Instantiate(explosion_FX, transform.position, transform.rotation);
-        Destroy(explosion, 1f);
+        Destroy(explosion, explosion.GetComponent<ParticleSystem>().main.duration);
     }
 }
 

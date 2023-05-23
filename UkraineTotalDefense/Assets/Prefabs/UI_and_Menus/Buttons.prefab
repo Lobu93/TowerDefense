@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ed541f0ff6e2140a09b9aecc4c7216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defenderPrefab: {fileID: 4036693552590690723, guid: 8c0542f05f514c140b2c515d098b85fc, type: 3}
+  defenderPrefab: {fileID: 4036693552590690723, guid: 707d59b86740155438efc3e88911c175, type: 3}
 --- !u!1 &2068293345168119796
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ed541f0ff6e2140a09b9aecc4c7216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defenderPrefab: {fileID: 4036693552590690723, guid: 8c0542f05f514c140b2c515d098b85fc, type: 3}
+  defenderPrefab: {fileID: 4036693552590690723, guid: a4db754d9a9c85343bdb7cd6605e5d5a, type: 3}
 --- !u!1 &2341207719684464556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ed541f0ff6e2140a09b9aecc4c7216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defenderPrefab: {fileID: 4036693552590690723, guid: 8c0542f05f514c140b2c515d098b85fc, type: 3}
+  defenderPrefab: {fileID: 4036693552590690723, guid: bb38532b343be9b40bbf21a17f20cf71, type: 3}
 --- !u!1001 &2980369502778225423
 PrefabInstance:
   m_ObjectHideFlags: 0

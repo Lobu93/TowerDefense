@@ -309,8 +309,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: 740ba0e47b0f467408a34d705f7fd661, type: 3}
   - {fileID: 0}
-  - {fileID: 8300000, guid: df895b907868e254ba5775004edf9ae7, type: 3}
   - {fileID: 0}
+  - {fileID: 8300000, guid: dfb99013e64342148b9985cfb283afcf, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1600, y: 900}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -563,7 +563,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1600, y: 900}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1800852015
 MonoBehaviour:
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 63eb5f5f18785c24dab541ed9ae859c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6d971244826c1849a4992dbf061bead, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

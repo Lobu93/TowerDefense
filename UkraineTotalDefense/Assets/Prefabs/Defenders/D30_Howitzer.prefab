@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1299281697
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1471566631
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +195,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1471566634
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -211,7 +212,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1733072396
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +302,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1733072399
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -317,7 +319,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2646017989858861831
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,9 +610,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6385106c6576b694f895a74169781cc2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e223c4e246e4d13478d4bca84f1ab452, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.866
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -722,22 +725,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - cost: 200
+  - cost: 400
     visualization: {fileID: 1299281694}
     bullet: {fileID: 5122770295875038258, guid: 39b7fb5cf3b988845a174b12e5da4990, type: 3}
-    fireRate: 1
+    fireRate: 2
     selectedDecal: {fileID: 213989250822164542}
     unitName: D-30 Howitzer Lv. 1
-  - cost: 110
+  - cost: 210
     visualization: {fileID: 1733072396}
-    bullet: {fileID: 5122770295875038258, guid: 39b7fb5cf3b988845a174b12e5da4990, type: 3}
-    fireRate: 1
+    bullet: {fileID: 5122770295875038258, guid: 70a98f663c547a64f9a979c6a68a18d7, type: 3}
+    fireRate: 2
     selectedDecal: {fileID: 213989250822164542}
     unitName: D-30 Howitzer Lv. 2
-  - cost: 120
+  - cost: 220
     visualization: {fileID: 1471566631}
-    bullet: {fileID: 5122770295875038258, guid: 39b7fb5cf3b988845a174b12e5da4990, type: 3}
-    fireRate: 1
+    bullet: {fileID: 5122770295875038258, guid: 69a7b418b4e392441b2086b05bc06c0b, type: 3}
+    fireRate: 2
     selectedDecal: {fileID: 213989250822164542}
     unitName: D-30 Howitzer Lv. 3
 --- !u!114 &-1646885287966831551
@@ -754,6 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInRange: []
   currentSpawnPoint: {fileID: 0}
+  muzzleFlash_FX: {fileID: 1000013462590818, guid: 1bfb2f5a71dc73048bb2a8b3539d7734, type: 3}
   pointUp: {fileID: 8279987147250361407}
   pointUpDiagonalRight: {fileID: 5055340623084337193}
   pointRight: {fileID: 3615641981428766533}

@@ -24,7 +24,8 @@ public class MusicManager : MonoBehaviour
     {
         AudioClip thisLevelMusic = levelMusicChangeArray[level];
         Debug.Log("Playing clip: " + thisLevelMusic);
-        
+        Debug.Log("OnLevelWasLoaded: " + level);
+
         // If there's some music attached
         if (thisLevelMusic)
         {

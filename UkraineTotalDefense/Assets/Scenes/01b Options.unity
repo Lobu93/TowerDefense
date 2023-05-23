@@ -920,7 +920,7 @@ GameObject:
   - component: {fileID: 320479606}
   - component: {fileID: 320479607}
   m_Layer: 5
-  m_Name: Difficulty Slider
+  m_Name: SoundFX Volume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -946,7 +946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -210.615, y: 16}
+  m_AnchoredPosition: {x: 0, y: 16}
   m_SizeDelta: {x: 378.651, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320479607
@@ -993,10 +993,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 392331925}
   m_HandleRect: {fileID: 131039956}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 3
-  m_WholeNumbers: 1
-  m_Value: 2
+  m_MinValue: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1948961341}
-  difficultySlider: {fileID: 320479607}
+  soundVXVolumeSlider: {fileID: 320479607}
   levelManager: {fileID: 1322198073}
 --- !u!1 &1346518200
 GameObject:
@@ -1841,7 +1841,7 @@ GameObject:
   - component: {fileID: 1346518203}
   - component: {fileID: 1346518202}
   m_Layer: 5
-  m_Name: Difficulty Label
+  m_Name: SoundFX Volume Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1864,8 +1864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -576, y: 17}
-  m_SizeDelta: {x: 321, y: 61}
+  m_AnchoredPosition: {x: -490, y: 17}
+  m_SizeDelta: {x: 500, y: 61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346518202
 MonoBehaviour:
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Diffculty
+  m_text: Sound FX Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2089,7 +2089,7 @@ GameObject:
   - component: {fileID: 1945660230}
   - component: {fileID: 1945660229}
   m_Layer: 5
-  m_Name: Volume Label
+  m_Name: Music Volume Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2112,8 +2112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -613, y: 116.00004}
-  m_SizeDelta: {x: 234, y: 61}
+  m_AnchoredPosition: {x: -530, y: 116.00004}
+  m_SizeDelta: {x: 400, y: 61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1945660229
 MonoBehaviour:
@@ -2135,7 +2135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Volume
+  m_text: Music Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2223,7 +2223,7 @@ GameObject:
   - component: {fileID: 1948961340}
   - component: {fileID: 1948961341}
   m_Layer: 5
-  m_Name: Volume Slider
+  m_Name: Music Volume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2249,7 +2249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -210.615, y: 116}
+  m_AnchoredPosition: {x: 0, y: 116}
   m_SizeDelta: {x: 378.651, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948961341

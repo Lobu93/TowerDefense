@@ -10,6 +10,7 @@ public class GameManagerBehavior : MonoBehaviour
     public TextMeshProUGUI waveLabel;
     public GameObject[] nextWaveLabels;
     public bool gameOver = false;
+    public bool isGamePaused = false;
     public TextMeshProUGUI healthLabel;
     public TextMeshProUGUI upgradeCostLabel;
     public TextMeshProUGUI unitNameLabel;
@@ -113,9 +114,17 @@ public class GameManagerBehavior : MonoBehaviour
         Health = 5;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PauseGame()
     {
-        
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        isGamePaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        isGamePaused = false;
     }
 }

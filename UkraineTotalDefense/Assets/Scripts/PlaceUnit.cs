@@ -38,9 +38,9 @@ public class PlaceUnit : MonoBehaviour
 
     void OnMouseUp()
     {
-        unitPrefab = Button.selectedDefender;
+        unitPrefab = UnitButtons.selectedDefender;
 
-        if (unitPrefab != null)
+        if ((unitPrefab != null) && (!gameManager.isGamePaused))
         {
             if (CanPlaceUnit())
             {
@@ -51,6 +51,7 @@ public class PlaceUnit : MonoBehaviour
                 selectedDecal.SetActive(false);
 
                 AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+                audioSource.volume = PlayerPrefsManager.GetSoundFXVolume();
                 audioSource.PlayOneShot(audioSource.clip);
 
                 gameManager.Gold -= unit.GetComponent<UnitData>().CurrentLevel.cost;
@@ -123,20 +124,20 @@ public class PlaceUnit : MonoBehaviour
     public void UpgradeUnit()
     {
         if (CanUpgradeUnit())
-        {
-            // print("Upgrade Button pressed! " + gameObject);
-
+        {       
             unit.GetComponent<UnitData>().IncreaseLevel();
             UpdateUpgradeButtonImage();
 
-            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+            AudioSource audioSource = upgradePanel.GetComponent<AudioSource>();
+            audioSource.volume = PlayerPrefsManager.GetSoundFXVolume();
             audioSource.PlayOneShot(audioSource.clip);
+
             gameManager.Gold -= unit.GetComponent<UnitData>().CurrentLevel.cost;
             gameManager.UpgradeCost = unit.GetComponent<UnitData>().CurrentLevel.cost;
             gameManager.unitNameLabel.text = unit.GetComponent<UnitData>().CurrentLevel.unitName.ToString();
 
-            print("currentLevelIndex = " + unit.GetComponent<UnitData>().CurrentLevelIndex);
-            Debug.Log("Class: PlaceUnit | Function: UpgradeUnit() | ObjectName: " + gameObject);
+            //print("currentLevelIndex = " + unit.GetComponent<UnitData>().CurrentLevelIndex);
+            //Debug.Log("Class: PlaceUnit | Function: UpgradeUnit() | ObjectName: " + gameObject);
         }
     }
 
